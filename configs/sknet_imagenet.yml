@@ -1,14 +1,14 @@
-#cuda: "all"
+cuda: "all"
 model:
     arch: sknet
     depth: 50
 data:
     dataset: imagenet
-    train_dir: /home/xliu/dataset/ILSVRC/train
-    val_dir: /home/xliu/dataset/ILSVRC/val
+    train_dir: /path/to/ILSVRC/train
+    val_dir: /path/to/ILSVRC/val
     workers: 16
 training:
-    runid: 86028
+#    runid: 86028
 #    seed: 1337
     epochs: 100
     batch_size: 256

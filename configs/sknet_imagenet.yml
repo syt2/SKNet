@@ -1,0 +1,29 @@
+#cuda: "all"
+model:
+    arch: sknet
+    depth: 50
+data:
+    dataset: imagenet
+    train_dir: /home/xliu/dataset/ILSVRC/train
+    val_dir: /home/xliu/dataset/ILSVRC/val
+    workers: 16
+training:
+    runid: 86028
+#    seed: 1337
+    epochs: 100
+    batch_size: 256
+    loss:
+        name: 'label_smooth'
+        smoothing: 0.1
+    optimizer:
+        name: 'sgd'
+        lr: 0.1  #for imagenet, lr = 0.1 * batch_size / 256
+        weight_decay: 0.0001
+        momentum: 0.9
+    lr_schedule:
+        name: 'multi_step'
+        milestones: [30,60,90]
+        gamma: 0.1
+    save_interval: 1
+    resume: save_model.pkl
+    best_model: best_model.pkl

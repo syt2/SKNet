@@ -2,6 +2,7 @@
 Implemenation of [Selective Kernel Networks](https://arxiv.org/abs/1903.06586) by pytorch.
 
 The architecture of **SK** is as follows
+
 ![](IMG/SKConv.png)
 
 I trained SKNet50 on ImageNet-2012 from scratch and got an accuracy of **21.26**, 

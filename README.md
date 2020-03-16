@@ -41,5 +41,5 @@ _If somebody know what caused the problem, please leave me a message._
 
 #### The error curve during the training process is shown below
 <div align="center">
- <img src="IMG/error.png" width = "500" height = "500" alt="error curve" />
+ <img src="IMG/error.png" width = "500" alt="error curve" />
 </div>

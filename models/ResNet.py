@@ -87,7 +87,7 @@ class resnet(nn.Module):
         return x
 
 
-def ResNet(num_classes=1000, depth=18):
+def ResNet(num_classes=1000, depth=50):
     assert depth in [50, 101, 152], 'depth invalid'
     key2blocks = {
         50: [3, 4, 6, 3],

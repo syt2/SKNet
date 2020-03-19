@@ -30,7 +30,6 @@ class SKConv(nn.Module):
     def forward(self, x):
         x = [conv(x) for conv in self.convs]
         x = torch.stack(x, dim=1)
-
         attention = torch.sum(x, dim=1)
         attention = self.gap(attention)
         attention = self.fc(attention)
@@ -38,7 +37,6 @@ class SKConv(nn.Module):
         attention = torch.stack(attention, dim=1)
         attention = self.softmax(attention)
         x = torch.sum(x * attention, dim=1)
-
         return x
 
 
@@ -95,11 +93,11 @@ class sknet(nn.Module):
         self.stage_3 = self._make_layer(512, 512, 1024, nums_block=num_block_lists[2], stride=2)
         self.stage_4 = self._make_layer(1024, 1024, 2048, nums_block=num_block_lists[3], stride=2)
 
-        self.gap = nn.AvgPool2d(7)
+        self.gap = nn.AdaptiveAvgPool2d(1)
         self.classifier = nn.Linear(2048, num_classes)
 
         for m in self.modules():
-            if isinstance(m, (nn.Conv2d, nn.Linear, nn.ConvTranspose2d)):
+            if isinstance(m, (nn.Conv2d, nn.Linear)):
                 nn.init.kaiming_normal_(m.weight, mode='fan_in')
                 if m.bias is not None:
                     nn.init.zeros_(m.bias)

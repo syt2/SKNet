@@ -1084,4 +1084,3 @@ if __name__ == "__main__":
     model_path = os.path.join(logdir, cfg["training"]["best_model"])
 
     test(cfg, img_path='PATH/TO/IMG', model_path=model_path)
-

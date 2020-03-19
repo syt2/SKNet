@@ -11,7 +11,8 @@ training:
     epochs: 100
     batch_size: 256
     loss:
-        name: 'cross_entropy'
+        name: 'label_smooth'
+        smoothing: 0.1
     optimizer:
         name: 'sgd'
         lr: 0.1  #for imagenet, lr = 0.1 * batch_size / 256

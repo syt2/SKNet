@@ -1,6 +1,3 @@
-from models.CifarResNet import ResNet as CifarResNet
-from models.ResNet import ResNet
-from models.ResNeXt import ResNeXt
 from models.SKNet import SKNet
 
 
@@ -24,8 +21,6 @@ def _get_num_classes(name):
     try:
         return {
             "imagenet": 1000,
-            "cifar10": 10,
-            "cifar100": 100,
         }[name]
     except:
         raise ("Dataset {} not available".format(name))
@@ -34,9 +29,6 @@ def _get_num_classes(name):
 def _get_model_instance(name):
     try:
         return {
-            "resnext": ResNeXt,
-            "cifarresnet": CifarResNet,
-            "resnet": ResNet,
             "sknet": SKNet,
         }[name]
     except:

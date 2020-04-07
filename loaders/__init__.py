@@ -1,13 +1,9 @@
 import logging
-from loaders.cifar10_loader import cifar10_loader
-from loaders.cifar100_loader import cifar100_loader
 from loaders.imagenet_loader import imagenet_loader
 
-logger = logging.getLogger("CNN")
+logger = logging.getLogger("SKNet")
 
 key2loader = {
-    "cifar10": cifar10_loader,
-    "cifar100": cifar100_loader,
     "imagenet": imagenet_loader,
 }
 

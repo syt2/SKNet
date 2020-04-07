@@ -11,7 +11,7 @@ key2loss = {
     "label_smooth": LabelSmoothLoss,
 }
 
-logger = logging.getLogger("CNN")
+logger = logging.getLogger("SKNet")
 
 
 def get_loss_fn(cfg):

@@ -8,8 +8,6 @@ from utils import convert_state_dict
 
 from PIL import Image
 
-torch.backends.cudnn.benchmark = True
-
 idx2label = {0: 'tench, Tinca tinca',
              1: 'goldfish, Carassius auratus',
              2: 'great white shark, white shark, man-eater, man-eating shark, Carcharodon carcharias',
@@ -1055,10 +1053,10 @@ def test(cfg, img_path, model_path):
     input = get_img(img_path)  # read img
     with torch.no_grad():
         if use_cuda:
-            model.cuda()
             input = input.cuda()
         output = model(input)  # model output
         idx = torch.argmax(output, 1)
+
     idx = int(idx.data)
     cls = idx2label[idx]
     print(idx, cls)

@@ -4,12 +4,12 @@ model:
     depth: 50
 data:
     dataset: imagenet
-    train_dir: /path/to/ILSVRC/train
-    val_dir: /path/to/ILSVRC/val
+    train_dir: /PATH/TO/ILSVRC/train
+    val_dir: /PATH/TO/ILSVRC/val
     workers: 16
 training:
 #    runid: 86028
-#    seed: 1337
+#    seed:
     epochs: 100
     batch_size: 256
     loss:
@@ -17,7 +17,7 @@ training:
         smoothing: 0.1
     optimizer:
         name: 'sgd'
-        lr: 0.1  #for imagenet, lr = 0.1 * batch_size / 256
+        lr: 0.1
         weight_decay: 0.0001
         momentum: 0.9
     lr_schedule:

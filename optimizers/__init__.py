@@ -2,7 +2,7 @@ import logging
 
 from torch.optim import SGD, Adam, ASGD, Adamax, Adadelta, Adagrad, RMSprop
 
-logger = logging.getLogger("CNN")
+logger = logging.getLogger("SKNet")
 
 key2opt = {
     "sgd": SGD,

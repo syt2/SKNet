@@ -125,9 +125,8 @@ class sknet(nn.Module):
 
 
 def SKNet(num_classes=1000, depth=50):
-    assert depth in [26, 50, 101], 'depth invalid'
+    assert depth in [50, 101], 'depth invalid'
     key2blocks = {
-        26: [2, 2, 2, 2],
         50: [3, 4, 6, 3],
         101: [3, 4, 23, 3],
     }
@@ -136,12 +135,5 @@ def SKNet(num_classes=1000, depth=50):
 
 
 if __name__ == '__main__':
-    batch = 2
-    inplanes = 3
-    outplanes = 1000
-    h, w = 224, 224
-
-    model = SKNet(outplanes, depth=50)
-    x = torch.rand((batch, inplanes, h, w))
-    model(x)
+    model = SKNet()
     print(model)

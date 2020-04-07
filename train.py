@@ -11,7 +11,7 @@ from tqdm import tqdm
 from models import get_model
 from losses import get_loss_fn
 from loaders import get_loader
-from utils import get_logger, convert_secs2time, time_string, accuracy, save_checkpoint
+from utils import get_logger, convert_secs2time, time_string, accuracy, save_checkpoint, convert_state_dict
 from metrics import RecorderMeter, AverageMeter
 from schedulers import get_scheduler
 from optimizers import get_optimizer
@@ -73,7 +73,10 @@ def train(cfg, writer, logger):
                 "Loading model and optimizer from checkpoint '{}'".format(resume_path)
             )
             checkpoint = torch.load(resume_path)
-            model.load_state_dict(checkpoint["state_dict"])
+            state = checkpoint["state_dict"]
+            if torch.cuda.device_count() <= 1:
+                state = convert_state_dict(state)
+            model.load_state_dict(state)
             optimizer.load_state_dict(checkpoint["optimizer"])
             scheduler.load_state_dict(checkpoint["scheduler"])
             start_epoch = checkpoint["epoch"]
@@ -113,6 +116,7 @@ def train(cfg, writer, logger):
         writer.add_scalar('Val/acc', val_acc, epoch)
 
         epoch_time.update(time.time() - start_time)
+    writer.close()
 
 
 def train_epoch(train_loader, model, loss_fn, optimizer, use_cuda, logger):
